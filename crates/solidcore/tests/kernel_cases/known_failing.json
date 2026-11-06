@@ -1,5 +1,10 @@
 [
   {
+    "case": "fillets/round-ending-on-a-step-narrower-than-its-radius",
+    "issue": "to file",
+    "reason": "a round r 1 whose end lands on a step face 0.5 wide: solidcore main refuses it by name ('too large: the largest Radius that fits is 0.5'); SolidCraft's pin (8ddce901) failed it bare ('SMLib's result is not a closed solid'). The round has to overflow its end into the step, which the blend does not do yet; with the step 1 wide (the control) it builds exactly"
+  },
+  {
     "case": "fillets/1080-fillet-equal-slope-basin-1-mm-rim-loop-4",
     "issue": "tangency-labs/solidcore#2947",
     "reason": "continuity_order: got {'body': 'Slab', 'edges': 'blend', 'order': 'g0',  want >= g1 at every blend seam"

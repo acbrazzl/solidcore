@@ -1,0 +1,345 @@
+{
+  "area": "fillets",
+  "bodies": {
+    "b12": {
+      "keeping_splines": false,
+      "trusted": true
+    },
+    "b3": {
+      "keeping_splines": false,
+      "trusted": true
+    },
+    "b6": {
+      "keeping_splines": false,
+      "trusted": true
+    }
+  },
+  "calls": [
+    {
+      "inputs": [],
+      "op": "extrude",
+      "outputs": [
+        "b1"
+      ],
+      "params": {
+        "cap": true,
+        "corner": "curvature",
+        "direction": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "distance": 10.0,
+        "draft": 0.0,
+        "profile": [
+          {
+            "line": {
+              "end": [
+                20.0,
+                0.0,
+                0.0
+              ],
+              "start": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          },
+          {
+            "line": {
+              "end": [
+                20.0,
+                10.0,
+                0.0
+              ],
+              "start": [
+                20.0,
+                0.0,
+                0.0
+              ]
+            }
+          },
+          {
+            "line": {
+              "end": [
+                0.0,
+                10.0,
+                0.0
+              ],
+              "start": [
+                20.0,
+                10.0,
+                0.0
+              ]
+            }
+          },
+          {
+            "line": {
+              "end": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "start": [
+                0.0,
+                10.0,
+                0.0
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "op": "extrude",
+      "outputs": [
+        "b2"
+      ],
+      "params": {
+        "cap": true,
+        "corner": "curvature",
+        "direction": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "distance": 10.0,
+        "draft": 0.0,
+        "profile": [
+          {
+            "line": {
+              "end": [
+                20.0,
+                -5.0,
+                0.0
+              ],
+              "start": [
+                0.5,
+                -5.0,
+                0.0
+              ]
+            }
+          },
+          {
+            "line": {
+              "end": [
+                20.0,
+                0.0,
+                0.0
+              ],
+              "start": [
+                20.0,
+                -5.0,
+                0.0
+              ]
+            }
+          },
+          {
+            "line": {
+              "end": [
+                0.5,
+                0.0,
+                0.0
+              ],
+              "start": [
+                20.0,
+                0.0,
+                0.0
+              ]
+            }
+          },
+          {
+            "line": {
+              "end": [
+                0.5,
+                -5.0,
+                0.0
+              ],
+              "start": [
+                0.5,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "inputs": [
+        "b3"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b4"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b4"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b5"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b6"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b7"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b7"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b8"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b5"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b9"
+      ],
+      "params": {
+        "operand": 0
+      }
+    },
+    {
+      "inputs": [
+        "b8"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b10"
+      ],
+      "params": {
+        "operand": 1
+      }
+    },
+    {
+      "inputs": [
+        "b9",
+        "b10"
+      ],
+      "op": "boolean",
+      "outputs": [
+        "b11"
+      ],
+      "params": {
+        "op": "union"
+      }
+    },
+    {
+      "inputs": [
+        "b12"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b13"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b13"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b14"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b14"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b15"
+      ],
+      "params": {
+        "operand": 0
+      }
+    },
+    {
+      "error": "SMLib's result is not a closed solid",
+      "inputs": [
+        "b15"
+      ],
+      "op": "blend_dropping",
+      "params": {
+        "edges": {
+          "kind": "edge",
+          "picked": [
+            {
+              "at": [
+                [
+                  0.0,
+                  10.0,
+                  10.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  10.0
+                ]
+              ],
+              "index": 5
+            }
+          ],
+          "points": [
+            [
+              0.0,
+              5.0,
+              10.0
+            ]
+          ],
+          "tolerance": 1.347291201783626
+        },
+        "kind": "round",
+        "sizes": [
+          1.0
+        ]
+      }
+    }
+  ],
+  "case": "round-ending-on-a-step-narrower-than-its-radius",
+  "expected": {
+    "body_count": 1,
+    "method": "V0 = 20*10*10 + 19.5*5*10 = 2975. Least the round removes: a full round (section (1 - pi/4) r^2 = 0.214602) along at least 9 of the edge's 10 mm, leaving one radius for however its end is closed: 1.931416. Most: the full round along all 10 mm (2.146018), plus a round along the whole 5 mm of the step's own front edge (1.073009), plus at most a 1 mm cube at the step's corner: 4.219027. Volume in [2975 - 4.219027, 2975 - 1.931416]; one body The blend's corner turn (mitre, SolidCraft's default) is left out of the call: one open edge, no corner to turn.",
+    "source": "analytic",
+    "sources": [
+      "to file"
+    ],
+    "volume_mm3": [
+      2970.780973,
+      2973.068584
+    ],
+    "what": "a block 20 x 10 x 10 (y 0..10) with a second block beside it (y -5..0) set back to x >= 0.5, so the block's front top edge (x 0, z 10) ends at y = 0 on a step face only 0.5 wide; a round r 1 on that edge. The round's section is wider than the face it ends on, so its end must run into the step; it is refused with 'SMLib's result is not a closed solid', where the same round builds with the step 1 wide (the control) and with it 0.17 wide"
+  },
+  "expressible": true,
+  "operation_expressible": true,
+  "records": "round-ending-on-a-step-narrower-than-its-radius.bodies.json.gz",
+  "result": [],
+  "sources": [
+    "to file"
+  ],
+  "ungraded": [],
+  "what": "a block 20 x 10 x 10 (y 0..10) with a second block beside it (y -5..0) set back to x >= 0.5, so the block's front top edge (x 0, z 10) ends at y = 0 on a step face only 0.5 wide; a round r 1 on that edge. The round's section is wider than the face it ends on, so its end must run into the step; it is refused with 'SMLib's result is not a closed solid', where the same round builds with the step 1 wide (the control) and with it 0.17 wide",
+  "why_not": []
+}
