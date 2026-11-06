@@ -1,0 +1,134 @@
+{
+  "area": "fillets",
+  "bodies": {
+    "b2": {
+      "keeping_splines": false,
+      "trusted": true
+    }
+  },
+  "calls": [
+    {
+      "inputs": [
+        "b2"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b3"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b3"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b4"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b4"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b5"
+      ],
+      "params": {
+        "operand": 0
+      }
+    },
+    {
+      "inputs": [
+        "b5"
+      ],
+      "op": "blend_dropping",
+      "outputs": [
+        "b6"
+      ],
+      "params": {
+        "edges": {
+          "kind": "edge",
+          "picked": [
+            {
+              "at": [
+                [
+                  0.0,
+                  0.0,
+                  20.0
+                ],
+                [
+                  40.0,
+                  0.0,
+                  20.0
+                ]
+              ],
+              "index": 1
+            },
+            {
+              "at": [
+                [
+                  0.0,
+                  0.0,
+                  20.0
+                ],
+                [
+                  40.0,
+                  0.0,
+                  20.0
+                ]
+              ],
+              "index": 1
+            }
+          ],
+          "points": [
+            [
+              20.0,
+              0.0,
+              20.0
+            ],
+            [
+              20.0,
+              0.0,
+              20.0
+            ]
+          ],
+          "tolerance": 2.693582403567252
+        },
+        "kind": "round",
+        "sizes": [
+          3.0,
+          3.0
+        ],
+        "turn": "mitre"
+      }
+    }
+  ],
+  "case": "fillet-edge-named-twice-in-one-call",
+  "expected": {
+    "body_count": 1,
+    "method": "the round removes (1 - pi/4) r^2 per unit length along the 40 mm edge, which ends on the two planar end faces: V = 24000 - (1 - pi/4)*9*40 = 23922.7433",
+    "source": "analytic",
+    "sources": [
+      "to file"
+    ],
+    "volume_mm3": 23922.7433,
+    "what": "a block 40 x 30 x 20 with its top front edge (y = 0, z = 20, along x) rounded r 3, the edge named twice in the one call: it is one edge, and the round is the same as naming it once"
+  },
+  "expressible": true,
+  "operation_expressible": true,
+  "records": "fillet-edge-named-twice-in-one-call.bodies.json.gz",
+  "result": [
+    {
+      "body": "K",
+      "made": "b6"
+    }
+  ],
+  "sources": [
+    "to file"
+  ],
+  "ungraded": [],
+  "what": "a block 40 x 30 x 20 with its top front edge (y = 0, z = 20, along x) rounded r 3, the edge named twice in the one call: it is one edge, and the round is the same as naming it once",
+  "why_not": []
+}

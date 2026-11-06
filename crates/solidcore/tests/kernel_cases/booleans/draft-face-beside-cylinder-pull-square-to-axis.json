@@ -1,0 +1,113 @@
+{
+  "area": "booleans",
+  "bodies": {
+    "b12": {
+      "keeping_splines": false,
+      "trusted": true
+    }
+  },
+  "calls": [
+    {
+      "inputs": [
+        "b12"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b13"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b13"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b14"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b14"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b15"
+      ],
+      "params": {
+        "operand": 0
+      }
+    },
+    {
+      "inputs": [
+        "b15"
+      ],
+      "op": "draft",
+      "outputs": [
+        "b16"
+      ],
+      "params": {
+        "angle": 0.05235987755982989,
+        "faces": {
+          "kind": "face",
+          "picked": [
+            {
+              "at": [],
+              "index": 6
+            }
+          ],
+          "points": [
+            [
+              20.0,
+              9.33333333333333,
+              8.333333333333332
+            ]
+          ],
+          "tolerance": 0.024495897427831783
+        },
+        "neutral_normal": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "neutral_origin": [
+          0.0,
+          10.0,
+          0.0
+        ],
+        "pull": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      }
+    }
+  ],
+  "case": "draft-face-beside-cylinder-pull-square-to-axis",
+  "expected": {
+    "body_count": 1,
+    "method": "block 2000 - half cylinder pi*3^2*10/2; the draft tilts the 2 mm wide strip about its edge on y = 10 by 3 deg outward, adding a triangular prism 0.5 * 2 * (2 tan 3 deg) * 10 = 1.048156: V = 1859.6765",
+    "source": "analytic",
+    "sources": [
+      "to file"
+    ],
+    "volume_mm3": 1859.6765,
+    "what": "a block 20 x 10 x 10 with a half-round notch r 3 cut down its x = 20 face (axis Z at y = 5), which leaves that face as two strips, y 0..2 and 8..10, each sharing an edge with the notch's cylinder; the strip y 8..10 drafted 3 deg with pull +Y about the neutral plane y = 10, so a planar face beside a cylinder is drafted square to the cylinder's axis"
+  },
+  "expressible": true,
+  "operation_expressible": true,
+  "records": "draft-face-beside-cylinder-pull-square-to-axis.bodies.json.gz",
+  "result": [
+    {
+      "body": "D",
+      "made": "b16"
+    }
+  ],
+  "sources": [
+    "to file"
+  ],
+  "ungraded": [],
+  "what": "a block 20 x 10 x 10 with a half-round notch r 3 cut down its x = 20 face (axis Z at y = 5), which leaves that face as two strips, y 0..2 and 8..10, each sharing an edge with the notch's cylinder; the strip y 8..10 drafted 3 deg with pull +Y about the neutral plane y = 10, so a planar face beside a cylinder is drafted square to the cylinder's axis",
+  "why_not": []
+}

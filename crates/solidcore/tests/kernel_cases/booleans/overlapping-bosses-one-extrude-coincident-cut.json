@@ -1,0 +1,118 @@
+{
+  "area": "booleans",
+  "bodies": {
+    "b13": {
+      "keeping_splines": false,
+      "trusted": true
+    },
+    "b14": {
+      "keeping_splines": false,
+      "trusted": true
+    }
+  },
+  "calls": [
+    {
+      "inputs": [
+        "b14"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b15"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b15"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b16"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b13"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b17"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b17"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b18"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b16"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b19"
+      ],
+      "params": {
+        "operand": 0
+      }
+    },
+    {
+      "inputs": [
+        "b18"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b20"
+      ],
+      "params": {
+        "operand": 1
+      }
+    },
+    {
+      "inputs": [
+        "b19",
+        "b20"
+      ],
+      "op": "boolean",
+      "outputs": [
+        "b21"
+      ],
+      "params": {
+        "op": "subtract"
+      }
+    }
+  ],
+  "case": "overlapping-bosses-one-extrude-coincident-cut",
+  "expected": {
+    "body_count": 1,
+    "method": "the bosses' section is 3 discs less the two lenses where neighbours overlap (the outer two's own overlap lies inside the middle disc): 3*pi*36 - 2*lens, lens = 2 r^2 acos(d/2r) - (d/2) sqrt(4r^2 - d^2) with r 6, d 9; the cut removes the whole middle disc over 8 mm, all of it material: V = 12000 + 15*(3 pi 36 - 2 lens) - 8 pi 36 = 15695.0247",
+    "source": "analytic",
+    "sources": [
+      "to file"
+    ],
+    "volume_mm3": 15695.0247,
+    "what": "three r 6 bosses on a 60 x 40 x 5 plate, centres 9 apart so neighbours overlap, joined in one extrude (z 5..20); then a cut by a cylinder r 6 coaxial with the middle boss (its wall on that boss's wall) removing z 12..20"
+  },
+  "expressible": true,
+  "operation_expressible": true,
+  "records": "overlapping-bosses-one-extrude-coincident-cut.bodies.json.gz",
+  "result": [
+    {
+      "body": "Plate",
+      "made": "b21"
+    }
+  ],
+  "sources": [
+    "to file"
+  ],
+  "ungraded": [],
+  "what": "three r 6 bosses on a 60 x 40 x 5 plate, centres 9 apart so neighbours overlap, joined in one extrude (z 5..20); then a cut by a cylinder r 6 coaxial with the middle boss (its wall on that boss's wall) removing z 12..20",
+  "why_not": []
+}
