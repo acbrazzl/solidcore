@@ -219,6 +219,23 @@ fn merge_boolean(
         .map(|(outcome, _)| outcome)
 }
 
+/// Glues `b`'s coincident edges, those sharing both vertices and lying on each other
+/// within `StitchIntoSolid`'s start tolerance, into radial edges with
+/// `SmStitch::DoStitching` (region nesting on, no edge splitting, every edge a
+/// candidate, not only lamina ones: the line where two parts of a solid touch has two
+/// faces on each of its edges). A B-rep without such pairs is left as it was.
+fn stitch_coincident_edges(k: &mut Kernel, b: &mut Brep) -> Result<()> {
+    use crate::heal::stitch::{p1, p2};
+    let (tol, _) = p2::solid_stitch_start(k, b)?;
+    let mut callback = p1::DefaultStitchCallback::new();
+    let mut stitch = p1::Stitch::new(&mut callback, tol, true, false);
+    stitch.making_manifold_solid = false;
+    stitch.split_edges_with_vertices = false;
+    stitch.do_stitching(k, b, None, None, p2::MinGapRequest::default())?;
+    b.refresh_cached_topology();
+    Ok(())
+}
+
 /// [`merge_boolean`] running `method`, with the merge's common edges on the first
 /// B-rep (`SmMerge::m_vEdges`) as it left them.
 fn merge_boolean_by(
@@ -232,6 +249,14 @@ fn merge_boolean_by(
     // SmMerge sMerge(*pContext, pBrep1, pBrep2) (or 0, 0, &sOptions): tolerance and
     // angle 0, both computed by the constructor.
     use crate::boolean::merge::p3::BooleanDriver;
+    // Not upstream (`fixes.boolean_stitches_operand_coincident_edges`): one radial edge
+    // where an operand carries a line twice, so `Relate` can mate the other operand's
+    // edge there to one edge.
+    let (mut brep1, mut brep2) = (brep1, brep2);
+    if k.fixes.boolean_stitches_operand_coincident_edges {
+        stitch_coincident_edges(k, &mut brep1)?;
+        stitch_coincident_edges(k, &mut brep2)?;
+    }
     // (not upstream) the driver carries the operands' attributes through the merge, as
     // upstream's live on the objects the merge edits
     let mut driver = crate::boolean::merge::p3::DependencyMerge::carrying_attributes();
