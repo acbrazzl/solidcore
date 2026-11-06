@@ -1570,6 +1570,18 @@ pub struct UpstreamFixes {
     /// against the untrimmed surface. Classifications outside editing are unchanged
     /// (WR-732, #2503; solidcore-native, no fork commit).
     pub brep_ray_classifies_current_trims: bool,
+    /// `SmApiBoolean` first stitches each operand's coincident edges, two edges of one
+    /// B-rep that share both vertices and lie on each other within the stitch tolerance,
+    /// into one radial edge (`SmStitch::DoStitching` at the start tolerance of
+    /// `StitchIntoSolid`, with region nesting, no edge splitting and no manifold-solid
+    /// restriction). A body whose parts touch along a line (bosses tangent to each other,
+    /// extruded together) can carry that line as one edge in each part's face; upstream
+    /// keeps both, and when the other operand's edge or face meets the line,
+    /// `SmTopologyIntersector::Relate` must mate one edge of the other operand to two
+    /// of this one and fails with 1001. A cut coaxial with one of three touching bosses
+    /// is refused; stitched first it removes the analytic volume (9e-10 off). An operand
+    /// with no coincident edges is unchanged (solidcore-native, no fork commit).
+    pub boolean_stitches_operand_coincident_edges: bool,
 }
 }
 

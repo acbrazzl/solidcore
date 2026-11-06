@@ -1,10 +1,5 @@
 [
   {
-    "case": "booleans/tangent-bosses-coincident-cut",
-    "issue": "to file",
-    "reason": "refused with 1001 at topology_intersector relate: the target's two bosses touch along a line that the union left as two coincident edges (one per boss); the tool's wall crosses that line and imprints one edge there, which cannot mate both. 0.001 mm apart (the control) it cuts exactly"
-  },
-  {
     "case": "fillets/1080-fillet-equal-slope-basin-1-mm-rim-loop-4",
     "issue": "to file",
     "reason": "continuity_order: got {'body': 'Slab', 'edges': 'blend', 'order': 'g0',  want >= g1 at every blend seam"

@@ -76,12 +76,14 @@
       }
     },
     {
-      "error": "solidcore: SmApiBoolean: boolean::topology_intersector::p1::relate: upstream status 1001",
       "inputs": [
         "b30",
         "b31"
       ],
       "op": "boolean",
+      "outputs": [
+        "b32"
+      ],
       "params": {
         "op": "subtract"
       }
@@ -101,7 +103,12 @@
   "expressible": true,
   "operation_expressible": true,
   "records": "tangent-bosses-coincident-cut.bodies.json.gz",
-  "result": [],
+  "result": [
+    {
+      "body": "Plate",
+      "made": "b32"
+    }
+  ],
   "sources": [
     "to file"
   ],
