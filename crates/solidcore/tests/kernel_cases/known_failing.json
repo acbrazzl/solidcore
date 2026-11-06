@@ -40,6 +40,11 @@
     "reason": "solid.fillet builds `corner: g2` with `fit: exact` only"
   },
   {
+    "case": "fillets/concave-round-through-a-tangent-pinch",
+    "issue": "to file",
+    "reason": "refused with a bare 1001: a concave round whose tangent chain runs through a point where a third face (the block's side) is tangent to the rolling face, so the strip beside the wall pinches to zero width; with the side 0.5 off tangent (the control) it builds inside its derived range. With tangent_chain false the refusal is correct and named"
+  },
+  {
     "case": "fillets/cov-fillet-g2-corner-beside-a-cylinder",
     "issue": "to file",
     "reason": "step 6 (solid.fillet): the open setback corner is not a closed solid, as on SMLib d01d7b0"
@@ -90,12 +95,12 @@
     "reason": "step 13 (solid.fillet): invalid input: not supported yet: the fillet meets a corner of this kind, which SMLib's blends do not handle yet (where its ed"
   },
   {
-    "case": "fillets/report-fillet-curvature-three-edges-at-bar-corner-solver-residues",
+    "case": "fillets/report-fillet-curvature-three-edges-at-bar-corner",
     "issue": "solidcore#2697",
     "reason": "continuity_order: G1 at one seam where the corner patch meets a contact face (g2 wanted), as on SMLib d01d7b0 (see KNOWN_FAILING)"
   },
   {
-    "case": "fillets/report-fillet-curvature-three-edges-at-bar-corner",
+    "case": "fillets/report-fillet-curvature-three-edges-at-bar-corner-solver-residues",
     "issue": "solidcore#2697",
     "reason": "continuity_order: G1 at one seam where the corner patch meets a contact face (g2 wanted), as on SMLib d01d7b0 (see KNOWN_FAILING)"
   },

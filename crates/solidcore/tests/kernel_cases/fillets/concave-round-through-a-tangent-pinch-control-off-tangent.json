@@ -1,0 +1,116 @@
+{
+  "area": "fillets",
+  "bodies": {
+    "b12": {
+      "keeping_splines": false,
+      "trusted": true
+    }
+  },
+  "calls": [
+    {
+      "inputs": [
+        "b12"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b13"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b13"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b14"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b14"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b15"
+      ],
+      "params": {
+        "operand": 0
+      }
+    },
+    {
+      "inputs": [
+        "b15"
+      ],
+      "op": "blend_dropping",
+      "outputs": [
+        "b16"
+      ],
+      "params": {
+        "edges": {
+          "kind": "edge",
+          "picked": [
+            {
+              "at": [
+                [
+                  -7.141428428542843,
+                  7.0000000000000036,
+                  9.999999999999998
+                ],
+                [
+                  -7.141428428542848,
+                  -7.000000000000001,
+                  10.000000000000002
+                ]
+              ],
+              "index": 4
+            }
+          ],
+          "points": [
+            [
+              -9.979760485018536,
+              -0.0017195942141636777,
+              10.0
+            ]
+          ],
+          "tolerance": 2.4503869848389415
+        },
+        "kind": "round",
+        "sizes": [
+          0.5
+        ],
+        "turn": "mitre"
+      }
+    }
+  ],
+  "case": "concave-round-through-a-tangent-pinch-control-off-tangent",
+  "expected": {
+    "body_count": 1,
+    "method": "base V0 = pi*10^2*10 + 40*14*10 = 8741.5927 (the block sits on the cylinder, no overlap). The concave round fills the corner between the cylinder wall and the block's underside along the arc under the block, x<0, |y|<=7: 88.85 deg. Fill section A = (1-pi/4) r^2 = 0.053650. Upper end: a full constant round along the whole arc at its outermost radius, A (R+r) dtheta = 0.8736. Lower end: the whole arc has room, A R dtheta = 0.8320, less 0.02 for the oblique end cuts. Volume in [V0 + 0.812, V0 + 0.874]; one body",
+    "source": "analytic",
+    "sources": [
+      "to file"
+    ],
+    "volume_mm3": [
+      8742.4047,
+      8742.4663
+    ],
+    "what": "control for the tangent pinch: the block's side face moved 0.5 outside the cylinder (x = -10.5), so the strip beside the wall is never narrower than the round; nothing else changes"
+  },
+  "expressible": true,
+  "operation_expressible": true,
+  "records": "concave-round-through-a-tangent-pinch-control-off-tangent.bodies.json.gz",
+  "result": [
+    {
+      "body": "P",
+      "made": "b16"
+    }
+  ],
+  "sources": [
+    "to file"
+  ],
+  "ungraded": [],
+  "what": "control for the tangent pinch: the block's side face moved 0.5 outside the cylinder (x = -10.5), so the strip beside the wall is never narrower than the round; nothing else changes",
+  "why_not": []
+}
