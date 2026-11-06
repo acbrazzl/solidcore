@@ -1,5 +1,10 @@
 [
   {
+    "case": "fillets/concave-round-through-a-tangent-pinch",
+    "issue": "to file",
+    "reason": "a concave round r 0.5 whose tangent chain runs through the point where the strip it rolls on pinches to zero width: SolidCraft's pin (8ddce901) failed it bare (1001); solidcore 5d2635d refuses it by name ('the fillet is larger than the faces beside its edges allow') and main with 'no room'. The round has to leave the strip at the pinch, which the blend does not do yet; the control (strip 0.5 wide, r 0.4) builds"
+  },
+  {
     "case": "fillets/1080-fillet-equal-slope-basin-1-mm-rim-loop-4",
     "issue": "tangency-labs/solidcore#2947",
     "reason": "continuity_order: got {'body': 'Slab', 'edges': 'blend', 'order': 'g0',  want >= g1 at every blend seam"

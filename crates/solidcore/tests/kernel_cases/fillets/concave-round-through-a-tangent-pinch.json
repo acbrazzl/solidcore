@@ -1,0 +1,129 @@
+{
+  "area": "fillets",
+  "bodies": {
+    "b12": {
+      "keeping_splines": false,
+      "trusted": true
+    }
+  },
+  "calls": [
+    {
+      "inputs": [
+        "b12"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b13"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b13"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b14"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b14"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b15"
+      ],
+      "params": {
+        "operand": 0
+      }
+    },
+    {
+      "error": "SMLib failed (status 1001)",
+      "inputs": [
+        "b15"
+      ],
+      "op": "blend_dropping",
+      "params": {
+        "edges": {
+          "kind": "edge",
+          "picked": [
+            {
+              "at": [
+                [
+                  -7.141428428542843,
+                  7.0000000000000036,
+                  9.999999999999998
+                ],
+                [
+                  -9.999999999999996,
+                  -5.938957083983252e-15,
+                  9.999999999999998
+                ]
+              ],
+              "index": 5
+            },
+            {
+              "at": [
+                [
+                  -9.999999999999996,
+                  -5.938957083983252e-15,
+                  9.999999999999998
+                ],
+                [
+                  -7.141428428542848,
+                  -7.000000000000001,
+                  10.000000000000002
+                ]
+              ],
+              "index": 4
+            }
+          ],
+          "points": [
+            [
+              -9.25027517243343,
+              3.7782954235108317,
+              10.0
+            ],
+            [
+              -9.243705138669855,
+              -3.776246957635419,
+              10.0
+            ]
+          ],
+          "tolerance": 2.4503869848389415
+        },
+        "kind": "round",
+        "sizes": [
+          0.5,
+          0.5
+        ]
+      }
+    }
+  ],
+  "case": "concave-round-through-a-tangent-pinch",
+  "expected": {
+    "body_count": 1,
+    "method": "base V0 = pi*10^2*10 + 40*14*10 = 8741.5927 (the block sits on the cylinder, no overlap). The concave round fills the corner between the cylinder wall and the block's underside along the arc under the block, x<0, |y|<=7: 88.85 deg. Fill section A = (1-pi/4) r^2 = 0.053650. Upper end: a full constant round along the whole arc at its outermost radius, A (R+r) dtheta = 0.8736. Lower end: the round is a full constant round wherever the strip is at least r wide; here that is 52.46 deg of the arc (the strip width at angle t from the tangent point is R(1-cos t)), A R times that = 0.4913, less 0.02 for the oblique cuts where the arc's ends meet the block walls y = +-7 (the control measures 0.0117 for them). Volume in [V0 + 0.471, V0 + 0.874]; one body The blend call's corner turn (mitre, SolidCraft's default) is left out: the arc and its tangent chain have no corner to turn.",
+    "source": "analytic",
+    "sources": [
+      "to file"
+    ],
+    "volume_mm3": [
+      8742.0639,
+      8742.4663
+    ],
+    "what": "a cylinder r 10 with a block on top whose side face x = -10 is TANGENT to it; a concave round r 0.5 on the arc where the wall meets the block's underside, tangent chain on, so it runs through the point where the underside strip beside the wall pinches to zero width. A rolling ball of radius 0.5 fits everywhere except at the pinch, where the round must leave the strip; the kernel refuses it with a bare 1001, where with tangent_chain false it gives a named refusal"
+  },
+  "expressible": true,
+  "operation_expressible": true,
+  "records": "concave-round-through-a-tangent-pinch.bodies.json.gz",
+  "result": [],
+  "sources": [
+    "to file"
+  ],
+  "ungraded": [],
+  "what": "a cylinder r 10 with a block on top whose side face x = -10 is TANGENT to it; a concave round r 0.5 on the arc where the wall meets the block's underside, tangent chain on, so it runs through the point where the underside strip beside the wall pinches to zero width. A rolling ball of radius 0.5 fits everywhere except at the pinch, where the round must leave the strip; the kernel refuses it with a bare 1001, where with tangent_chain false it gives a named refusal",
+  "why_not": []
+}

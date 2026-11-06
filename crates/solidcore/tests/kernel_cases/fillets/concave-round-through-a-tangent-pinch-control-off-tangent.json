@@ -1,0 +1,115 @@
+{
+  "area": "fillets",
+  "bodies": {
+    "b12": {
+      "keeping_splines": false,
+      "trusted": true
+    }
+  },
+  "calls": [
+    {
+      "inputs": [
+        "b12"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b13"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b13"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b14"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b14"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b15"
+      ],
+      "params": {
+        "operand": 0
+      }
+    },
+    {
+      "inputs": [
+        "b15"
+      ],
+      "op": "blend_dropping",
+      "outputs": [
+        "b16"
+      ],
+      "params": {
+        "edges": {
+          "kind": "edge",
+          "picked": [
+            {
+              "at": [
+                [
+                  -7.141428428542843,
+                  7.0000000000000036,
+                  9.999999999999998
+                ],
+                [
+                  -7.141428428542848,
+                  -7.000000000000001,
+                  10.000000000000002
+                ]
+              ],
+              "index": 4
+            }
+          ],
+          "points": [
+            [
+              -9.979760485018536,
+              -0.0017195942141636777,
+              10.0
+            ]
+          ],
+          "tolerance": 2.4503869848389415
+        },
+        "kind": "round",
+        "sizes": [
+          0.4
+        ]
+      }
+    }
+  ],
+  "case": "concave-round-through-a-tangent-pinch-control-off-tangent",
+  "expected": {
+    "body_count": 1,
+    "method": "base V0 = pi*10^2*10 + 40*14*10 = 8741.5927. Fill section A = (1 - pi/4) r^2 = 0.034336, r 0.4. The round runs along the arc under the block, |y| <= 7: 1.5508 rad. Upper end: A (R + r) times that = 0.5538. Lower end: A R times that, less at most a section times r for each oblique end where the arc meets the block walls y = +-7 (2 A r = 0.0275): 0.5050. Volume in [8742.0977, 8742.1464]; one body. The blend call's corner turn (mitre, SolidCraft's default) is left out: one arc, no corner to turn.",
+    "source": "analytic",
+    "sources": [
+      "to file"
+    ],
+    "volume_mm3": [
+      8742.0977,
+      8742.1464
+    ],
+    "what": "control for the tangent-pinch case: the block's side face moved 0.5 outside the cylinder (x = -10.5), so the strip beside the wall is 0.5 wide everywhere, and a round r 0.4 (inside that width, so no contact line reaches the strip's far edge); nothing else changes"
+  },
+  "expressible": true,
+  "operation_expressible": true,
+  "records": "concave-round-through-a-tangent-pinch-control-off-tangent.bodies.json.gz",
+  "result": [
+    {
+      "body": "P",
+      "made": "b16"
+    }
+  ],
+  "sources": [
+    "to file"
+  ],
+  "ungraded": [],
+  "what": "control for the tangent-pinch case: the block's side face moved 0.5 outside the cylinder (x = -10.5), so the strip beside the wall is 0.5 wide everywhere, and a round r 0.4 (inside that width, so no contact line reaches the strip's far edge); nothing else changes",
+  "why_not": []
+}
