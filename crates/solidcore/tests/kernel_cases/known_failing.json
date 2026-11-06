@@ -1,5 +1,10 @@
 [
   {
+    "case": "booleans/cylinder-near-tangent-to-block-faces",
+    "issue": "to file",
+    "reason": "refused, the result not a closed solid: a cylinder whose wall crosses two parallel block faces by 1.99e-5, inside the bodies' 2e-5 tolerance; 1.9e-5 (one control) and 2.1e-5 (the other) both join exactly. Swept across the band the outcome alternates"
+  },
+  {
     "case": "fillets/1080-fillet-equal-slope-basin-1-mm-rim-loop-4",
     "issue": "to file",
     "reason": "continuity_order: got {'body': 'Slab', 'edges': 'blend', 'order': 'g0',  want >= g1 at every blend seam"
@@ -90,12 +95,12 @@
     "reason": "step 13 (solid.fillet): invalid input: not supported yet: the fillet meets a corner of this kind, which SMLib's blends do not handle yet (where its ed"
   },
   {
-    "case": "fillets/report-fillet-curvature-three-edges-at-bar-corner-solver-residues",
+    "case": "fillets/report-fillet-curvature-three-edges-at-bar-corner",
     "issue": "solidcore#2697",
     "reason": "continuity_order: G1 at one seam where the corner patch meets a contact face (g2 wanted), as on SMLib d01d7b0 (see KNOWN_FAILING)"
   },
   {
-    "case": "fillets/report-fillet-curvature-three-edges-at-bar-corner",
+    "case": "fillets/report-fillet-curvature-three-edges-at-bar-corner-solver-residues",
     "issue": "solidcore#2697",
     "reason": "continuity_order: G1 at one seam where the corner patch meets a contact face (g2 wanted), as on SMLib d01d7b0 (see KNOWN_FAILING)"
   },

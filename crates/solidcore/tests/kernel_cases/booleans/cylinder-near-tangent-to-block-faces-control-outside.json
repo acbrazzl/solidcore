@@ -1,0 +1,118 @@
+{
+  "area": "booleans",
+  "bodies": {
+    "b3": {
+      "keeping_splines": false,
+      "trusted": true
+    },
+    "b6": {
+      "keeping_splines": false,
+      "trusted": true
+    }
+  },
+  "calls": [
+    {
+      "inputs": [
+        "b3"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b4"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b4"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b5"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b6"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b7"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b7"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b8"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b5"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b9"
+      ],
+      "params": {
+        "operand": 0
+      }
+    },
+    {
+      "inputs": [
+        "b8"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b10"
+      ],
+      "params": {
+        "operand": 1
+      }
+    },
+    {
+      "inputs": [
+        "b9",
+        "b10"
+      ],
+      "op": "boolean",
+      "outputs": [
+        "b11"
+      ],
+      "params": {
+        "op": "union"
+      }
+    }
+  ],
+  "case": "cylinder-near-tangent-to-block-faces-control-outside",
+  "expected": {
+    "body_count": 1,
+    "method": "V = block 40*24*8 + cylinder pi r^2 * 24 - the cylinder's part inside the block, (pi r^2 - the two circular segments beyond |y| = 12, each r^2 acos(12/r) - 12 sqrt(r^2 - 12^2)) * 8; r = 12 + 2.1e-05 gives 14918.2548; one body",
+    "source": "analytic",
+    "sources": [
+      "to file"
+    ],
+    "volume_mm3": 14918.2548,
+    "what": "control for the near-tangent cylinder: radius 12 + 2.1e-5, just past the tolerance; nothing else changes"
+  },
+  "expressible": true,
+  "operation_expressible": true,
+  "records": "cylinder-near-tangent-to-block-faces-control-outside.bodies.json.gz",
+  "result": [
+    {
+      "body": "B",
+      "made": "b11"
+    }
+  ],
+  "sources": [
+    "to file"
+  ],
+  "ungraded": [],
+  "what": "control for the near-tangent cylinder: radius 12 + 2.1e-5, just past the tolerance; nothing else changes",
+  "why_not": []
+}
