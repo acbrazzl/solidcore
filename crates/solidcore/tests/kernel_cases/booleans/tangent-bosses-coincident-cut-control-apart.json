@@ -1,0 +1,118 @@
+{
+  "area": "booleans",
+  "bodies": {
+    "b23": {
+      "keeping_splines": false,
+      "trusted": true
+    },
+    "b24": {
+      "keeping_splines": false,
+      "trusted": true
+    }
+  },
+  "calls": [
+    {
+      "inputs": [
+        "b24"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b25"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b25"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b26"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b23"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b27"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b27"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b28"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b26"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b29"
+      ],
+      "params": {
+        "operand": 0
+      }
+    },
+    {
+      "inputs": [
+        "b28"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b30"
+      ],
+      "params": {
+        "operand": 1
+      }
+    },
+    {
+      "inputs": [
+        "b29",
+        "b30"
+      ],
+      "op": "boolean",
+      "outputs": [
+        "b31"
+      ],
+      "params": {
+        "op": "subtract"
+      }
+    }
+  ],
+  "case": "tangent-bosses-coincident-cut-control-apart",
+  "expected": {
+    "body_count": 1,
+    "method": "plate 60*40*5 = 12000; three disjoint (or line-touching) bosses pi*6^2*15 each = 3*1696.460 = 5089.380; the cut removes the middle boss above z 12, pi*6^2*8 = 904.779 (the cut tool lies within that boss, so it removes nothing else). V = 12000 + 5089.380 - 904.779 = 16184.601; one body (the bosses stand on the plate)",
+    "source": "analytic",
+    "sources": [
+      "to file"
+    ],
+    "volume_mm3": 16184.6014,
+    "what": "control for the tangent case: the same plate, bosses and cut, with the outer boss centres moved 0.001 mm outward so the neighbours no longer touch; nothing else changes"
+  },
+  "expressible": true,
+  "operation_expressible": true,
+  "records": "tangent-bosses-coincident-cut-control-apart.bodies.json.gz",
+  "result": [
+    {
+      "body": "Plate",
+      "made": "b31"
+    }
+  ],
+  "sources": [
+    "to file"
+  ],
+  "ungraded": [],
+  "what": "control for the tangent case: the same plate, bosses and cut, with the outer boss centres moved 0.001 mm outward so the neighbours no longer touch; nothing else changes",
+  "why_not": []
+}
