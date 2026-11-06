@@ -76,3 +76,51 @@ fn an_imprint_cuts_the_faces_the_tool_crosses() {
     assert_eq!(r.counts().unwrap(), [6, 12, 8]);
     assert!(near(volume(&r), 1.0), "{}", volume(&r));
 }
+
+/// A solid cylinder r 20 on Z over `z0..z0 + h`, its axis through `(dx, 0)`.
+fn cylinder(dx: f64, z0: f64, h: f64) -> Body {
+    use solidcore_ops::sweep::{extrude, Curve, DraftCorner};
+    let circle = Curve::Arc {
+        center: [dx, 0.0, z0],
+        axis: [0.0, 0.0, 1.0],
+        reference: [1.0, 0.0, 0.0],
+        radius: 20.0,
+        start: 0.0,
+        end: std::f64::consts::TAU,
+    };
+    extrude(
+        &[circle],
+        [0.0, 0.0, 1.0],
+        h,
+        0.0,
+        DraftCorner::default(),
+        true,
+    )
+    .unwrap()
+}
+
+#[test]
+fn cylinders_coaxial_to_tolerance_union_to_a_body_the_full_check_passes() {
+    all_fixes();
+    // The second cylinder's axis is 1e-6 off the first's, twenty times under the bodies'
+    // tolerance: the two are one cylinder to tolerance, z 0..16. Its top circle stays the
+    // second's, so the vertex where it meets the first's seam lies 1e-6 off that seam: on
+    // it to the vertex's tolerance, and no near miss.
+    for dx in [0.0, 1e-6] {
+        let u = boolean(
+            cylinder(0.0, 0.0, 10.0),
+            cylinder(dx, 4.0, 12.0),
+            BooleanOp::Union,
+        )
+        .unwrap()
+        .unwrap();
+        let report = u.check(solidcore_ops::CheckLevel::All).unwrap();
+        assert!(report.is_valid(), "offset {dx}: {}", report.text);
+        let v = std::f64::consts::PI * 400.0 * 16.0;
+        assert!(
+            (volume(&u) - v).abs() <= 1e-6 * v,
+            "offset {dx}: {} against {v}",
+            volume(&u)
+        );
+    }
+}

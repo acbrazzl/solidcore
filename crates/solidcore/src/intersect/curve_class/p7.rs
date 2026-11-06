@@ -683,18 +683,22 @@ impl<O: ClassObject> CurveClassification<O> {
             None
         };
         let near_miss_dist_3d = EFF_ZERO * 1000.0;
+        // A gap within the object's own tolerance puts the curve on it, as the tolerance
+        // model has it: such a vertex or edge marks the curve. Only a gap past both the
+        // object's tolerance and `near_miss_dist_3d` is a miss.
+        let misses = |pc: &PointClassification<O>| -> Result<bool> {
+            let gap = pc.gap_3d(k, geometry, surface)?;
+            Ok(gap >= near_miss_dist_3d && gap > pc.obj_zone_tol_3d(k, geometry)?)
+        };
 
         for ivl in self.intervals() {
             let beg = &ivl.start;
             let mid = &ivl.mid;
             let end = &ivl.end;
 
-            if (beg.point_class() == PointClassType::Vertex
-                && beg.gap_3d(k, geometry, surface)? >= near_miss_dist_3d)
-                || (mid.point_class() == PointClassType::Edge
-                    && mid.gap_3d(k, geometry, surface)? >= near_miss_dist_3d)
-                || (end.point_class() == PointClassType::Vertex
-                    && end.gap_3d(k, geometry, surface)? >= near_miss_dist_3d)
+            if (beg.point_class() == PointClassType::Vertex && misses(beg)?)
+                || (mid.point_class() == PointClassType::Edge && misses(mid)?)
+                || (end.point_class() == PointClassType::Vertex && misses(end)?)
             {
                 return Ok(true);
             }
