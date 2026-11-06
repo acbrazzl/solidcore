@@ -1562,6 +1562,18 @@ pub struct UpstreamFixes {
     /// against the untrimmed surface. Classifications outside editing are unchanged
     /// (WR-732, #2503; solidcore-native, no fork commit).
     pub brep_ray_classifies_current_trims: bool,
+    /// `SmOffsetGeometryCreation::ReplaceEdgeCurves` keeps an offset edge's curve only where
+    /// the new curve lies on it, not merely where their ends meet: upstream takes ends that
+    /// agree (within the edge's tolerance, either way round) for "no change" and keeps the old
+    /// curve. A draft or local operation that turns a face about a hinge through both ends of
+    /// one of its edges leaves those ends where they were while the edge between them moves
+    /// (the face's boundary turned rigidly with it, where its new neighbour meets it on another
+    /// curve); the kept curve is then off one of its faces, so the merge either glues it to
+    /// its neighbour's at their gap (an edge tolerance far past the body's, refused by the
+    /// check) or leaves the two apart (lamina edges, not a solid). With the flag, three
+    /// interior points of the old curve must drop onto the new one within the edge tolerance
+    /// for it to be kept (solidcore-native, no fork commit).
+    pub offset_edge_replaced_when_interior_moves: bool,
 }
 }
 

@@ -1,0 +1,443 @@
+{
+  "area": "booleans",
+  "bodies": {
+    "b29": {
+      "keeping_splines": false,
+      "trusted": true
+    },
+    "b30": {
+      "keeping_splines": false,
+      "trusted": true
+    },
+    "b39": {
+      "keeping_splines": false,
+      "trusted": true
+    },
+    "b40": {
+      "keeping_splines": false,
+      "trusted": true
+    },
+    "b48": {
+      "keeping_splines": false,
+      "trusted": true
+    }
+  },
+  "calls": [
+    {
+      "inputs": [],
+      "op": "extrude",
+      "outputs": [
+        "b27"
+      ],
+      "params": {
+        "cap": true,
+        "corner": "curvature",
+        "direction": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "distance": 9.0,
+        "draft": 0.0,
+        "profile": [
+          {
+            "arc": {
+              "axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "center": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end": 6.896285307179586,
+              "radius": 18.0,
+              "reference": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "start": 0.6131
+            }
+          }
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "op": "extrude",
+      "outputs": [
+        "b28"
+      ],
+      "params": {
+        "cap": true,
+        "corner": "curvature",
+        "direction": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "distance": 14.0,
+        "draft": 0.0,
+        "profile": [
+          {
+            "arc": {
+              "axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "center": [
+                0.0,
+                0.0,
+                -14.0
+              ],
+              "end": 6.283185307179586,
+              "radius": 15.0,
+              "reference": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "start": 0.0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "inputs": [
+        "b30"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b31"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b31"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b32"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b29"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b33"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b33"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b34"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b32"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b35"
+      ],
+      "params": {
+        "operand": 0
+      }
+    },
+    {
+      "inputs": [
+        "b34"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b36"
+      ],
+      "params": {
+        "operand": 1
+      }
+    },
+    {
+      "inputs": [
+        "b35",
+        "b36"
+      ],
+      "op": "boolean",
+      "outputs": [
+        "b37"
+      ],
+      "params": {
+        "op": "subtract"
+      }
+    },
+    {
+      "inputs": [],
+      "op": "extrude",
+      "outputs": [
+        "b38"
+      ],
+      "params": {
+        "cap": true,
+        "corner": "curvature",
+        "direction": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "distance": 13.0,
+        "draft": 0.0,
+        "profile": [
+          {
+            "line": {
+              "end": [
+                0.0,
+                -30.0,
+                -1.0
+              ],
+              "start": [
+                -30.0,
+                -30.0,
+                -1.0
+              ]
+            }
+          },
+          {
+            "line": {
+              "end": [
+                0.0,
+                30.0,
+                -1.0
+              ],
+              "start": [
+                0.0,
+                -30.0,
+                -1.0
+              ]
+            }
+          },
+          {
+            "line": {
+              "end": [
+                -30.0,
+                30.0,
+                -1.0
+              ],
+              "start": [
+                0.0,
+                30.0,
+                -1.0
+              ]
+            }
+          },
+          {
+            "line": {
+              "end": [
+                -30.0,
+                -30.0,
+                -1.0
+              ],
+              "start": [
+                -30.0,
+                30.0,
+                -1.0
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "inputs": [
+        "b40"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b41"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b41"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b42"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b39"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b43"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b43"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b44"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b42"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b45"
+      ],
+      "params": {
+        "operand": 0
+      }
+    },
+    {
+      "inputs": [
+        "b44"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b46"
+      ],
+      "params": {
+        "operand": 1
+      }
+    },
+    {
+      "inputs": [
+        "b45",
+        "b46"
+      ],
+      "op": "boolean",
+      "outputs": [
+        "b47"
+      ],
+      "params": {
+        "op": "subtract"
+      }
+    },
+    {
+      "inputs": [
+        "b48"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b49"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b49"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b50"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b50"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b51"
+      ],
+      "params": {
+        "operand": 0
+      }
+    },
+    {
+      "inputs": [
+        "b51"
+      ],
+      "op": "draft",
+      "outputs": [
+        "b52"
+      ],
+      "params": {
+        "angle": -0.05235987755982989,
+        "faces": {
+          "kind": "face",
+          "picked": [
+            {
+              "at": [],
+              "index": 4
+            }
+          ],
+          "points": [
+            [
+              0.5224760499661598,
+              -16.47286871888192,
+              0.0
+            ]
+          ],
+          "tolerance": 0.04122111519692386
+        },
+        "neutral_normal": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "neutral_origin": [
+          0.0,
+          0.0,
+          4.5
+        ],
+        "pull": [
+          -1.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  ],
+  "case": "draft-hinge-through-cone-edge-ends-control-cylinder",
+  "expected": {
+    "body_count": 1,
+    "method": "a half ring (x >= 0) between the cylinder r 18 and an inner wall, z 0..9; its flat bottom z = 0 drafted -3 deg about the plane x = 0 (the hinge, through both ends of the bottom's inner arc), pull -x: the bottom becomes z = x tan 3 deg. With S(R, c) = R^2 acos(c/R) - c sqrt(R^2 - c^2), the area of a disc of radius R beyond the line x = c, the solid before is int_0^9 pi/2 (18^2 - r(z)^2) dz and the draft removes int_0^(18 tan 3) [S(18, c) - S(r(z), c)] dz, c = z / tan 3 (S = 0 for c >= R); both by Simpson's rule on 20000 panels. Cylinder (r = 15): before 1399.579527, removed 85.843942, V = 1313.735585.",
+    "source": "analytic",
+    "sources": [
+      "to file"
+    ],
+    "volume_mm3": 1313.735585,
+    "what": "control for the cone case: the same half ring, hinge and draft, with the inner wall a cylinder r 15 (no taper); nothing else changes"
+  },
+  "expressible": true,
+  "operation_expressible": true,
+  "records": "draft-hinge-through-cone-edge-ends-control-cylinder.bodies.json.gz",
+  "result": [
+    {
+      "body": "Body1",
+      "made": "b52"
+    }
+  ],
+  "sources": [
+    "to file"
+  ],
+  "ungraded": [],
+  "what": "control for the cone case: the same half ring, hinge and draft, with the inner wall a cylinder r 15 (no taper); nothing else changes",
+  "why_not": []
+}
