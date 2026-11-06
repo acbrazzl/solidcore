@@ -1,5 +1,10 @@
 [
   {
+    "case": "booleans/tangent-bosses-coincident-cut",
+    "issue": "to file",
+    "reason": "refused with 1001 at topology_intersector relate: the target's two bosses touch along a line that the union left as two coincident edges (one per boss); the tool's wall crosses that line and imprints one edge there, which cannot mate both. 0.001 mm apart (the control) it cuts exactly"
+  },
+  {
     "case": "fillets/1080-fillet-equal-slope-basin-1-mm-rim-loop-4",
     "issue": "to file",
     "reason": "continuity_order: got {'body': 'Slab', 'edges': 'blend', 'order': 'g0',  want >= g1 at every blend seam"
@@ -90,12 +95,12 @@
     "reason": "step 13 (solid.fillet): invalid input: not supported yet: the fillet meets a corner of this kind, which SMLib's blends do not handle yet (where its ed"
   },
   {
-    "case": "fillets/report-fillet-curvature-three-edges-at-bar-corner-solver-residues",
+    "case": "fillets/report-fillet-curvature-three-edges-at-bar-corner",
     "issue": "solidcore#2697",
     "reason": "continuity_order: G1 at one seam where the corner patch meets a contact face (g2 wanted), as on SMLib d01d7b0 (see KNOWN_FAILING)"
   },
   {
-    "case": "fillets/report-fillet-curvature-three-edges-at-bar-corner",
+    "case": "fillets/report-fillet-curvature-three-edges-at-bar-corner-solver-residues",
     "issue": "solidcore#2697",
     "reason": "continuity_order: G1 at one seam where the corner patch meets a contact face (g2 wanted), as on SMLib d01d7b0 (see KNOWN_FAILING)"
   },
