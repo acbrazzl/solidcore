@@ -1283,6 +1283,28 @@ fn create_analytic_extension(k: &Kernel, surface: &Surface, dist: f64) -> Result
 /// copy over the same span: from `marched`'s start point to its end point, the way
 /// round through its middle (all of a closed conic for a closed piece). `None` when no
 /// line or conic of `exact` runs through all three points within `tol`.
+/// Whether `old` on `old_ivl` lies on `new` on `new_ivl`: its points a quarter, a half and
+/// three quarters of the way along its interval each drop onto `new` within `tol` (a global
+/// drop, so the two curves' parameterisations need not agree). Ends that agree prove nothing
+/// about the curve between them ([`crate::kernel::UpstreamFixes::offset_edge_replaced_when_interior_moves`]).
+fn curve_lies_on(
+    k: &Kernel,
+    old: &Curve,
+    old_ivl: &Extent1d,
+    new: &Curve,
+    new_ivl: &Extent1d,
+    tol: f64,
+) -> Result<bool> {
+    for f in [0.25, 0.5, 0.75] {
+        let p = old.evaluate_point(k, old_ivl.evaluate(f))?;
+        let d = new.drop_point(k, new_ivl, p, None, tol, None, SolverOperation::Minimize)?;
+        if !(d.success && d.distance <= tol) {
+            return Ok(false);
+        }
+    }
+    Ok(true)
+}
+
 fn exact_piece(k: &Kernel, marched: &Curve, exact: &[Curve], tol: f64) -> Result<Option<Curve>> {
     let ivl = marched.natural_interval();
     // start, middle, end
@@ -2311,8 +2333,21 @@ impl OffsetGeometryCreation {
             let curve_start = curve_of(brep, c3)?.evaluate_point(k, c3_ivl.min())?;
             let curve_end = curve_of(brep, c3)?.evaluate_point(k, c3_ivl.max())?;
 
+            // Not upstream (`fixes.offset_edge_replaced_when_interior_moves`): ends that agree
+            // say "no change" only where the old curve lies on the new one between them.
+            let interior_kept = !k.fixes.offset_edge_replaced_when_interior_moves
+                || curve_lies_on(
+                    k,
+                    curve_of(brep, eu_curve)?,
+                    &edge_ivl,
+                    curve_of(brep, c3)?,
+                    &c3_ivl,
+                    edge_tol,
+                )?;
+
             // low work - Edgesuse->Curve and 3DCurve start and end Points are within tol
-            if distance(edgeuse_start, curve_start) < edge_tol
+            if interior_kept
+                && distance(edgeuse_start, curve_start) < edge_tol
                 && distance(edgeuse_end, curve_end) < edge_tol
             {
                 // No change in ends of curve - don't bother using the inputs - delete them and get out.
@@ -2322,7 +2357,8 @@ impl OffsetGeometryCreation {
             }
 
             // low work - Edgeuse->Curve and 3DCurve start and end Points are within tol with reverse parameterization.
-            if distance(edgeuse_start, curve_end) < edge_tol
+            if interior_kept
+                && distance(edgeuse_start, curve_end) < edge_tol
                 && distance(edgeuse_end, curve_start) < edge_tol
             {
                 // No change in ends of curve - just delete the curves and get out
