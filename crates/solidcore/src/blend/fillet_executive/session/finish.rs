@@ -860,7 +860,12 @@ impl FilletSession<'_> {
                         && k.fixes.fillet_overflow_trim_at_creases
                         && k.fixes.fillet_round_ends_at_tangent_continuation
                 } else {
-                    session.executive.cliff_overflow && k.fixes.fillet_overflow_trim_at_creases
+                    // (fixes.fillet_concave_overflow_by_union) a concave overflow's sheet lies
+                    // outside the material, which the trim (it keeps the pieces inside) would
+                    // take whole: its region is joined instead
+                    session.executive.cliff_overflow
+                        && k.fixes.fillet_overflow_trim_at_creases
+                        && !session.executive.concave_union
                 };
             if trimmed {
                 let result = session.trim_at_creases(k);

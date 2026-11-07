@@ -732,6 +732,7 @@ impl<O: ClassObject + SolutionObject + Ord> FilletExecutive<O> {
             blend_curve_at_thirds: false,
             mark_corner_patches: false,
             cliff_overflow: false,
+            concave_union: false,
             open_ends: Vec::new(),
             overflow_first: false,
             classify_only: false,

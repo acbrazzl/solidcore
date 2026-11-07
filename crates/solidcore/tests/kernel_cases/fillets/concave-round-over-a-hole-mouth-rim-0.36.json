@@ -1,0 +1,476 @@
+{
+  "area": "fillets",
+  "bodies": {
+    "b13": {
+      "keeping_splines": false,
+      "trusted": true
+    },
+    "b14": {
+      "keeping_splines": false,
+      "trusted": true
+    },
+    "b22": {
+      "keeping_splines": false,
+      "trusted": true
+    },
+    "b3": {
+      "keeping_splines": false,
+      "trusted": true
+    },
+    "b6": {
+      "keeping_splines": false,
+      "trusted": true
+    }
+  },
+  "calls": [
+    {
+      "inputs": [],
+      "op": "extrude",
+      "outputs": [
+        "b1"
+      ],
+      "params": {
+        "cap": true,
+        "corner": "curvature",
+        "direction": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "distance": 10.0,
+        "draft": 0.0,
+        "profile": [
+          {
+            "line": {
+              "end": [
+                20.0,
+                0.0,
+                0.0
+              ],
+              "start": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          },
+          {
+            "line": {
+              "end": [
+                20.0,
+                10.0,
+                0.0
+              ],
+              "start": [
+                20.0,
+                0.0,
+                0.0
+              ]
+            }
+          },
+          {
+            "line": {
+              "end": [
+                0.0,
+                10.0,
+                0.0
+              ],
+              "start": [
+                20.0,
+                10.0,
+                0.0
+              ]
+            }
+          },
+          {
+            "line": {
+              "end": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "start": [
+                0.0,
+                10.0,
+                0.0
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "op": "extrude",
+      "outputs": [
+        "b2"
+      ],
+      "params": {
+        "cap": true,
+        "corner": "curvature",
+        "direction": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "distance": 10.0,
+        "draft": 0.0,
+        "profile": [
+          {
+            "line": {
+              "end": [
+                10.0,
+                0.0,
+                0.0
+              ],
+              "start": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          },
+          {
+            "line": {
+              "end": [
+                10.0,
+                20.0,
+                0.0
+              ],
+              "start": [
+                10.0,
+                0.0,
+                0.0
+              ]
+            }
+          },
+          {
+            "line": {
+              "end": [
+                0.0,
+                20.0,
+                0.0
+              ],
+              "start": [
+                10.0,
+                20.0,
+                0.0
+              ]
+            }
+          },
+          {
+            "line": {
+              "end": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "start": [
+                0.0,
+                20.0,
+                0.0
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "inputs": [
+        "b3"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b4"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b4"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b5"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b6"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b7"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b7"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b8"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b5"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b9"
+      ],
+      "params": {
+        "operand": 0
+      }
+    },
+    {
+      "inputs": [
+        "b8"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b10"
+      ],
+      "params": {
+        "operand": 1
+      }
+    },
+    {
+      "inputs": [
+        "b9",
+        "b10"
+      ],
+      "op": "boolean",
+      "outputs": [
+        "b11"
+      ],
+      "params": {
+        "op": "union"
+      }
+    },
+    {
+      "inputs": [],
+      "op": "extrude",
+      "outputs": [
+        "b12"
+      ],
+      "params": {
+        "cap": true,
+        "corner": "curvature",
+        "direction": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "distance": 4.0,
+        "draft": 0.0,
+        "profile": [
+          {
+            "arc": {
+              "axis": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "center": [
+                10.0,
+                13.36,
+                5.0
+              ],
+              "end": 6.896285307179586,
+              "radius": 3.0,
+              "reference": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "start": 0.6131
+            }
+          }
+        ]
+      }
+    },
+    {
+      "inputs": [
+        "b14"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b15"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b15"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b16"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b13"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b17"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b17"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b18"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b16"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b19"
+      ],
+      "params": {
+        "operand": 0
+      }
+    },
+    {
+      "inputs": [
+        "b18"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b20"
+      ],
+      "params": {
+        "operand": 1
+      }
+    },
+    {
+      "inputs": [
+        "b19",
+        "b20"
+      ],
+      "op": "boolean",
+      "outputs": [
+        "b21"
+      ],
+      "params": {
+        "op": "subtract"
+      }
+    },
+    {
+      "inputs": [
+        "b22"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b23"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b23"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b24"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b24"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b25"
+      ],
+      "params": {
+        "operand": 0
+      }
+    },
+    {
+      "inputs": [
+        "b25"
+      ],
+      "op": "blend_dropping",
+      "outputs": [
+        "b26"
+      ],
+      "params": {
+        "edges": {
+          "kind": "edge",
+          "picked": [
+            {
+              "at": [
+                [
+                  10.0,
+                  10.0,
+                  10.0
+                ],
+                [
+                  10.0,
+                  10.0,
+                  0.0
+                ]
+              ],
+              "index": 11
+            }
+          ],
+          "points": [
+            [
+              10.0,
+              10.0,
+              5.0
+            ]
+          ],
+          "tolerance": 1.501
+        },
+        "kind": "round",
+        "sizes": [
+          1.0
+        ]
+      }
+    }
+  ],
+  "case": "concave-round-over-a-hole-mouth-rim-0.36",
+  "expected": {
+    "body_count": 1,
+    "method": "L-block 20x10x10 + 10x20x10 (3000), inside corner x=10,y=10 for z 0..10; a blind hole r3 depth 4 drilled into the x=10 wall (-36 pi); R1 round on the inside corner: its spandrel R^2(1-pi/4) x 10 lies wholly at x>10 while the hole lies at x<10, so they do not overlap: V = 3000 - 36 pi + 10(1 - pi/4) = 2889.048683. (The rig's call carried SolidCraft's default corner turn, `mitre`; dropped here: one edge, no vertex where two blends meet, so no turn is made.)",
+    "source": "analytic",
+    "sources": [
+      "to file"
+    ],
+    "volume_mm3": 2889.048683,
+    "what": "inside round whose contact line crosses the mouth of a hole in its wall (rim 0.36 from the corner): refused as a concave overflow"
+  },
+  "expressible": true,
+  "operation_expressible": true,
+  "records": "concave-round-over-a-hole-mouth-rim-0.36.bodies.json.gz",
+  "result": [
+    {
+      "body": "Body1",
+      "made": "b26"
+    }
+  ],
+  "sources": [
+    "to file"
+  ],
+  "ungraded": [],
+  "what": "inside round whose contact line crosses the mouth of a hole in its wall (rim 0.36 from the corner): refused as a concave overflow",
+  "why_not": []
+}

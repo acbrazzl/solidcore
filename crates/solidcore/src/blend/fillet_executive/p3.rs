@@ -663,6 +663,9 @@ pub struct FilletExecutive<O> {
     /// removes is subtracted from the target. Set only with
     /// `fixes.fillet_cliff_overflow`.
     pub cliff_overflow: bool,
+    /// The overflow is a concave one built by union (`fixes.fillet_concave_overflow_by_union`):
+    /// the region is joined to the target rather than subtracted from it.
+    pub concave_union: bool,
     /// `m_vOpenEnds` (the fork's, WR-631): the fillet's ends the Nx1 corner there left
     /// uncut, in a cliff overflow.
     pub open_ends: Vec<OpenEnd<O>>,
@@ -2964,6 +2967,10 @@ impl<O: ClassObject + SolutionObject + Ord> FilletExecutive<O> {
         let mut overflow = false;
         let mut concave = false;
         let mut concave_overflow = false;
+        // (fixes.fillet_concave_overflow_by_union) an overflowing blend that removes material,
+        // and a concave one that runs on into the body's material or rolls over
+        let mut convex_overflow = false;
+        let mut concave_into_material = false;
         let mut round_into_material = false;
         let mut rolls_over = false;
         let mut overflowing = Vec::new();
@@ -2987,6 +2994,11 @@ impl<O: ClassObject + SolutionObject + Ord> FilletExecutive<O> {
             }
             if access.geometry_blend_adds_material(k, solver)? {
                 concave_overflow = true;
+                if judged.into_material || judged.rolls_over {
+                    concave_into_material = true;
+                }
+            } else {
+                convex_overflow = true;
             }
             if judged.into_material && !access.geometry_generator_is_linear(solver)? {
                 round_into_material = true;
@@ -3031,6 +3043,21 @@ impl<O: ClassObject + SolutionObject + Ord> FilletExecutive<O> {
                 "Fillet Note: stopped after classifying the rails (blends that overflow go first)"
                     .into();
             return Err(failure());
+        }
+        if overflow
+            && concave_overflow
+            && k.fixes.fillet_concave_overflow_by_union
+            && !convex_overflow
+            && !concave_into_material
+            && !round_into_material
+            && !rolls_over
+            && !self.options.global_merge
+        {
+            // (solidcore-native) every overflowing blend adds material and runs off its face
+            // into empty space: the same region as a cliff overflow, joined to the body
+            self.cliff_overflow = true;
+            self.concave_union = true;
+            return Ok(());
         }
         if overflow {
             let why = if concave_overflow {

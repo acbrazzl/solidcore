@@ -298,5 +298,6 @@
   "fillet_overflow_crease_along_edge",
   "plane_first_torus_section_exact",
   "keep_exact_pcurves",
-  "shell_one_construction"
+  "shell_one_construction",
+  "fillet_concave_overflow_by_union"
 ]

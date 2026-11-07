@@ -527,7 +527,13 @@ impl FilletSession<'_> {
         )?;
         let mut taken: Brep = std::mem::take(&mut *self.objects.target);
         taken.set_attributes(carried);
-        match boolean(k, taken, region, BooleanOperation::Difference) {
+        // (fixes.fillet_concave_overflow_by_union) a concave overflow's region is joined
+        let operation = if self.executive.concave_union {
+            BooleanOperation::Union
+        } else {
+            BooleanOperation::Difference
+        };
+        match boolean(k, taken, region, operation) {
             Ok(outcome) => {
                 // Not the fork's (WR-631 addendum): the subtraction from a manifold solid
                 // must leave one. The Boolean can succeed with an empty or open body (a
