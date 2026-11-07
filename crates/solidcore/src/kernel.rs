@@ -1291,6 +1291,14 @@ pub struct UpstreamFixes {
     /// and none runs on into the body's material, with no rollover or global merge alongside;
     /// the union must leave a manifold solid (`NoRoom` otherwise). Solidcore-native, no fork
     /// commit.
+    ///
+    /// **WARNING (2026-11-08): known wrong solid, unfixed and not yet gated.** On a real part, an
+    /// R0.75 round on a 1.38 mm convex edge (one that removes material) builds with this flag on:
+    /// it removes about 10.6 mm3 where about 0.3 is right, and leaves a pcurve 0.05 mm off its edge.
+    /// The kernel's full check passes the result; only tessellation refuses it. With the flag off,
+    /// the same call refuses cleanly ("Fillet Surface Computation Failure"). The mechanism is not
+    /// yet known (a convex overflow taken as concave is the suspect). A primitive case and a fix or
+    /// gate are owed before this flag is used on anything that matters.
     pub fillet_concave_overflow_by_union: bool,
     /// With `fillet_trace_reaches_rails`, `RailEdgeuseIntersect` runs a straight side edge on along its line past its far end only, never behind the corner: past the end at the filleted edge's vertex it lies on the far side of the filleted edge, outside the sector the blend fills, where no rail of it can be, and where (with the faces continued as themselves) a mirror image of the ball can be solved for (WR-643, #960; the SolidCraft fork's tangency-labs/smlib@7224896, branch `replay/1.0.1`). A side edge with both or neither end on the filleted edge still runs on past both.
     pub fillet_run_on_past_far_end_only: bool,
