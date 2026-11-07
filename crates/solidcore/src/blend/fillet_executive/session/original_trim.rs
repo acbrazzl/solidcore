@@ -483,9 +483,56 @@ impl FilletSession<'_> {
                 fillet.edge(other)?;
                 marks.mark(k, TrimOriginalBody::Target, Entity::Edge(edge), mark);
                 marks.mark(k, TrimOriginalBody::Fillet, Entity::Edge(other), mark);
+            } else if k.fixes.fillet_gap_patch_mate {
+                // (fixes.fillet_gap_patch_mate, solidcore-native) a mitre gap patch leaves a
+                // short segment of the side edge between the two rails' hits. Its fillet counterpart is the gap patch's OnEdge piece, whose end moved by the squeeze
+                // (within ITS tolerance, more than the target edge's), so the intersector classifies
+                // the pair Unknown and never relates them; the trim's flood then crosses the
+                // segment into faces the fillet keeps. Relate exactly that pair: both end vertices
+                // already mated, an unmated fillet edge joining their mates, and the two curves
+                // coincident at mid-interval within the fillet edge's own tolerance.
+                if let Some(other) = Self::gap_patch_edge_mate(k, self.objects.target, fillet, &self.executive.intersector, edge)? {
+                    marks.mark(k, TrimOriginalBody::Target, Entity::Edge(edge), mark);
+                    marks.mark(k, TrimOriginalBody::Fillet, Entity::Edge(other), mark);
+                }
             }
         }
         Ok(())
+    }
+
+    fn gap_patch_edge_mate(
+        k: &Kernel,
+        target: &crate::topology::Brep,
+        fillet: &crate::topology::Brep,
+        intersector: &crate::boolean::topology_intersector::p1::TopologyIntersector<FilletObject>,
+        edge: crate::topology::EdgeId,
+    ) -> Result<Option<crate::topology::EdgeId>> {
+        use crate::topology::{edge as te, vertex as tv};
+        let mate_of = |v| match intersector.other_mate(Some(FilletObject::Topology(FilletBody::Target, EntityRef::Vertex(v)))) {
+            Some(FilletObject::IntermediateTopology(EntityRef::Vertex(o))) => Some(o),
+            _ => None,
+        };
+        let ends: Vec<_> = tv::edge_vertices(target, edge)?.into_iter().flatten().collect();
+        let [a, b] = ends[..] else { return Ok(None) };
+        let (Some(ma), Some(mb)) = (mate_of(a), mate_of(b)) else { return Ok(None) };
+        let (Some(tc), ti) = (te::curve(target, edge)?, te::interval(target, edge)?) else { return Ok(None) };
+        let tmid = tc.evaluate_point(k, ti.mid())?;
+        for fe in p1::edges(fillet, None)? {
+            let fv: Vec<_> = tv::edge_vertices(fillet, fe)?.into_iter().flatten().collect();
+            if !(fv.len() == 2 && ((fv[0] == ma && fv[1] == mb) || (fv[0] == mb && fv[1] == ma))) {
+                continue;
+            }
+            if intersector.brep_mate(Some(FilletObject::IntermediateTopology(EntityRef::Edge(fe)))).is_some() {
+                continue;
+            }
+            let (Some(fc), fi) = (te::curve(fillet, fe)?, te::interval(fillet, fe)?) else { continue };
+            let fmid = fc.evaluate_point(k, fi.mid())?;
+            let tol = te::tolerance(fillet, fe)?.max(te::tolerance(target, edge)?);
+            if tmid.distance(fmid) <= tol {
+                return Ok(Some(fe));
+            }
+        }
+        Ok(None)
     }
 }
 

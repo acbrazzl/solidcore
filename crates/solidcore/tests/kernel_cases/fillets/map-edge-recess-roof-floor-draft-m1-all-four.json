@@ -1,0 +1,573 @@
+{
+ "area": "fillets",
+ "bodies": {
+  "b12": {
+   "keeping_splines": false,
+   "trusted": true
+  },
+  "b17": {
+   "keeping_splines": false,
+   "trusted": true
+  },
+  "b22": {
+   "keeping_splines": false,
+   "trusted": true
+  },
+  "b3": {
+   "keeping_splines": false,
+   "trusted": true
+  },
+  "b4": {
+   "keeping_splines": false,
+   "trusted": true
+  }
+ },
+ "calls": [
+  {
+   "inputs": [],
+   "op": "extrude",
+   "outputs": [
+    "b1"
+   ],
+   "params": {
+    "cap": true,
+    "corner": "curvature",
+    "direction": [
+     0.0,
+     0.0,
+     1.0
+    ],
+    "distance": 20.0,
+    "draft": 0.0,
+    "profile": [
+     {
+      "line": {
+       "end": [
+        40.0,
+        -15.0,
+        0.0
+       ],
+       "start": [
+        0.0,
+        -15.0,
+        0.0
+       ]
+      }
+     },
+     {
+      "line": {
+       "end": [
+        40.0,
+        15.0,
+        0.0
+       ],
+       "start": [
+        40.0,
+        -15.0,
+        0.0
+       ]
+      }
+     },
+     {
+      "line": {
+       "end": [
+        0.0,
+        15.0,
+        0.0
+       ],
+       "start": [
+        40.0,
+        15.0,
+        0.0
+       ]
+      }
+     },
+     {
+      "line": {
+       "end": [
+        0.0,
+        -15.0,
+        0.0
+       ],
+       "start": [
+        0.0,
+        15.0,
+        0.0
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "inputs": [],
+   "op": "extrude",
+   "outputs": [
+    "b2"
+   ],
+   "params": {
+    "cap": true,
+    "corner": "curvature",
+    "direction": [
+     0.0,
+     0.0,
+     1.0
+    ],
+    "distance": 8.0,
+    "draft": 0.0,
+    "profile": [
+     {
+      "line": {
+       "end": [
+        2.0,
+        -10.0,
+        6.0
+       ],
+       "start": [
+        -1.0,
+        -10.0,
+        6.0
+       ]
+      }
+     },
+     {
+      "line": {
+       "end": [
+        2.0,
+        10.0,
+        6.0
+       ],
+       "start": [
+        2.0,
+        -10.0,
+        6.0
+       ]
+      }
+     },
+     {
+      "line": {
+       "end": [
+        -1.0,
+        10.0,
+        6.0
+       ],
+       "start": [
+        2.0,
+        10.0,
+        6.0
+       ]
+      }
+     },
+     {
+      "line": {
+       "end": [
+        -1.0,
+        -10.0,
+        6.0
+       ],
+       "start": [
+        -1.0,
+        10.0,
+        6.0
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "inputs": [
+    "b4"
+   ],
+   "op": "copy",
+   "outputs": [
+    "b5"
+   ],
+   "params": {}
+  },
+  {
+   "inputs": [
+    "b5"
+   ],
+   "op": "copy",
+   "outputs": [
+    "b6"
+   ],
+   "params": {}
+  },
+  {
+   "inputs": [
+    "b3"
+   ],
+   "op": "copy",
+   "outputs": [
+    "b7"
+   ],
+   "params": {}
+  },
+  {
+   "inputs": [
+    "b7"
+   ],
+   "op": "copy",
+   "outputs": [
+    "b8"
+   ],
+   "params": {}
+  },
+  {
+   "inputs": [
+    "b6"
+   ],
+   "op": "tagged",
+   "outputs": [
+    "b9"
+   ],
+   "params": {
+    "operand": 0
+   }
+  },
+  {
+   "inputs": [
+    "b8"
+   ],
+   "op": "tagged",
+   "outputs": [
+    "b10"
+   ],
+   "params": {
+    "operand": 1
+   }
+  },
+  {
+   "inputs": [
+    "b9",
+    "b10"
+   ],
+   "op": "boolean",
+   "outputs": [
+    "b11"
+   ],
+   "params": {
+    "op": "subtract"
+   }
+  },
+  {
+   "inputs": [
+    "b12"
+   ],
+   "op": "copy",
+   "outputs": [
+    "b13"
+   ],
+   "params": {}
+  },
+  {
+   "inputs": [
+    "b13"
+   ],
+   "op": "copy",
+   "outputs": [
+    "b14"
+   ],
+   "params": {}
+  },
+  {
+   "inputs": [
+    "b14"
+   ],
+   "op": "tagged",
+   "outputs": [
+    "b15"
+   ],
+   "params": {
+    "operand": 0
+   }
+  },
+  {
+   "inputs": [
+    "b15"
+   ],
+   "op": "draft",
+   "outputs": [
+    "b16"
+   ],
+   "params": {
+    "angle": -0.017453292519943295,
+    "faces": {
+     "kind": "face",
+     "picked": [
+      {
+       "at": [],
+       "index": 9
+      }
+     ],
+     "points": [
+      [
+       0.6666666666666666,
+       6.666666666666666,
+       14.0
+      ]
+     ],
+     "tolerance": 0.053852648071345044
+    },
+    "neutral_normal": [
+     1.0,
+     0.0,
+     0.0
+    ],
+    "neutral_origin": [
+     2.0,
+     0.0,
+     0.0
+    ],
+    "pull": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "inputs": [
+    "b17"
+   ],
+   "op": "copy",
+   "outputs": [
+    "b18"
+   ],
+   "params": {}
+  },
+  {
+   "inputs": [
+    "b18"
+   ],
+   "op": "copy",
+   "outputs": [
+    "b19"
+   ],
+   "params": {}
+  },
+  {
+   "inputs": [
+    "b19"
+   ],
+   "op": "tagged",
+   "outputs": [
+    "b20"
+   ],
+   "params": {
+    "operand": 0
+   }
+  },
+  {
+   "inputs": [
+    "b20"
+   ],
+   "op": "draft",
+   "outputs": [
+    "b21"
+   ],
+   "params": {
+    "angle": -0.017453292519943295,
+    "faces": {
+     "kind": "face",
+     "picked": [
+      {
+       "at": [],
+       "index": 7
+      }
+     ],
+     "points": [
+      [
+       0.6666666666666666,
+       6.666666666666666,
+       5.999999999999993
+      ]
+     ],
+     "tolerance": 0.053852648071345044
+    },
+    "neutral_normal": [
+     1.0,
+     0.0,
+     0.0
+    ],
+    "neutral_origin": [
+     2.0,
+     0.0,
+     0.0
+    ],
+    "pull": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "inputs": [
+    "b22"
+   ],
+   "op": "copy",
+   "outputs": [
+    "b23"
+   ],
+   "params": {}
+  },
+  {
+   "inputs": [
+    "b23"
+   ],
+   "op": "copy",
+   "outputs": [
+    "b24"
+   ],
+   "params": {}
+  },
+  {
+   "inputs": [
+    "b24"
+   ],
+   "op": "tagged",
+   "outputs": [
+    "b25"
+   ],
+   "params": {
+    "operand": 0
+   }
+  },
+  {
+   "inputs": [
+    "b25"
+   ],
+   "op": "blend_dropping",
+   "outputs": [
+    "b26"
+   ],
+   "params": {
+    "edges": {
+     "kind": "edge",
+     "picked": [
+      {
+       "at": [
+        [
+         0.0,
+         -10.0,
+         14.034910129856428
+        ],
+        [
+         0.0,
+         10.0,
+         14.034910129856428
+        ]
+       ],
+       "index": 11
+      },
+      {
+       "at": [
+        [
+         0.0,
+         10.0,
+         5.965089870143564
+        ],
+        [
+         0.0,
+         -10.0,
+         5.965089870143564
+        ]
+       ],
+       "index": 9
+      },
+      {
+       "at": [
+        [
+         0.0,
+         10.0,
+         14.034910129856428
+        ],
+        [
+         0.0,
+         10.0,
+         5.965089870143564
+        ]
+       ],
+       "index": 10
+      },
+      {
+       "at": [
+        [
+         0.0,
+         -10.0,
+         5.965089870143564
+        ],
+        [
+         0.0,
+         -10.0,
+         14.034910129856428
+        ]
+       ],
+       "index": 12
+      }
+     ],
+     "points": [
+      [
+       0.0,
+       0.0,
+       14.034910129856428
+      ],
+      [
+       0.0,
+       0.0,
+       5.965089870143564
+      ],
+      [
+       0.0,
+       10.0,
+       9.999999999999996
+      ],
+      [
+       0.0,
+       -10.0,
+       9.999999999999996
+      ]
+     ],
+     "tolerance": 2.693582403567252
+    },
+    "kind": "round",
+    "sizes": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ]
+   }
+  }
+ ],
+ "case": "map-edge-recess-roof-floor-draft-m1-all-four",
+ "expected": {
+  "body_count": 1,
+  "method": "Block 40x30x20 (24000) with a recess 2 deep x 20 wide x 8 tall in its x=0 face (y -10..10, z 6..14; -320). Recess roof AND floor drafted -1 deg about x=2 (pull +X): each removes a wedge 40 tan a (together -1.396405). R1 on all four mouth edges: roof and floor (material angle 90+1: R^2(cot(th/2) - (pi-th)/2) per mm x 20 each = 4.120515), the two sides (90 deg: (1-pi/4) x (8 + 4 tan a) each = 1.731798). V = 23666.898968; the four corners where the rounds meet are each bounded by the R1 corner ball, 4 x (4/3)pi/8 = 2.0944. (SolidCraft's call carried its default corner turn, `mitre`; dropped here: the ops blend takes none and mitres rounds at a corner itself; graded against the closed-form volume above.)",
+  "source": "analytic",
+  "sources": [
+   "to file"
+  ],
+  "volume_mm3": 23666.898968,
+  "tolerance": {
+   "abs_mm": 2.0944
+  },
+  "what": "R1 on all four mouth edges of a recess whose roof and floor are drafted"
+ },
+ "expressible": true,
+ "operation_expressible": true,
+ "result": [
+  {
+   "body": "Body1",
+   "made": "b26"
+  }
+ ],
+ "sources": null,
+ "ungraded": [],
+ "what": "R1 on all four mouth edges of a recess whose roof and floor are drafted",
+ "why_not": [],
+ "records": "map-edge-recess-roof-floor-draft-m1-all-four.bodies.json.gz"
+}

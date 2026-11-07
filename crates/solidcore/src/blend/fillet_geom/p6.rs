@@ -1476,7 +1476,17 @@ impl FilletBrep {
                 .ok_or_else(nul)?
                 .approximate_length(k, &trim_ivl, 5, false)?
                 .0;
-            if len < corner.approx_tol_3d {
+            // (fixes.fillet_gap_patch_mate) a mitre gap patch's rail extension a few tolerances
+            // long is squeezed like one under the tolerance
+            let gap_patch_extension = k.fixes.fillet_gap_patch_mate
+                && corner.bevel_gap_patch
+                && self.fillet_edge(e)?.fillet_edge_type() == FilletEdgeType::RailExtension;
+            // up to twice the tolerance: the distance at which its two end vertices (each of the
+            // corner's tolerance) would merge. Longer extensions the merge keeps as edges, and they
+            // build without this (measured: a 1-deg roof draft, 1.5e-4 at tol 8e-5, fails without
+            // it; 1.1 deg, 1.8e-4, builds either way and must not be squeezed).
+            let cutoff = if gap_patch_extension { 2.0 * corner.approx_tol_3d } else { corner.approx_tol_3d };
+            if len < cutoff {
                 // The edge is too small, try to squeeze it (later)
                 let mut delete_fv = v0;
                 if self.fillet_vertex(delete_fv)?.fillet_vertex_type()

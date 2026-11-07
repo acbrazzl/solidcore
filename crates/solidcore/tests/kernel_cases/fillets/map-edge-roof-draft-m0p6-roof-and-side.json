@@ -1,0 +1,448 @@
+{
+ "area": "fillets",
+ "bodies": {
+  "b72": {
+   "keeping_splines": false,
+   "trusted": true
+  },
+  "b73": {
+   "keeping_splines": false,
+   "trusted": true
+  },
+  "b81": {
+   "keeping_splines": false,
+   "trusted": true
+  },
+  "b86": {
+   "keeping_splines": false,
+   "trusted": true
+  }
+ },
+ "calls": [
+  {
+   "inputs": [],
+   "op": "extrude",
+   "outputs": [
+    "b70"
+   ],
+   "params": {
+    "cap": true,
+    "corner": "curvature",
+    "direction": [
+     0.0,
+     0.0,
+     1.0
+    ],
+    "distance": 20.0,
+    "draft": 0.0,
+    "profile": [
+     {
+      "line": {
+       "end": [
+        40.0,
+        -15.0,
+        0.0
+       ],
+       "start": [
+        0.0,
+        -15.0,
+        0.0
+       ]
+      }
+     },
+     {
+      "line": {
+       "end": [
+        40.0,
+        15.0,
+        0.0
+       ],
+       "start": [
+        40.0,
+        -15.0,
+        0.0
+       ]
+      }
+     },
+     {
+      "line": {
+       "end": [
+        0.0,
+        15.0,
+        0.0
+       ],
+       "start": [
+        40.0,
+        15.0,
+        0.0
+       ]
+      }
+     },
+     {
+      "line": {
+       "end": [
+        0.0,
+        -15.0,
+        0.0
+       ],
+       "start": [
+        0.0,
+        15.0,
+        0.0
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "inputs": [],
+   "op": "extrude",
+   "outputs": [
+    "b71"
+   ],
+   "params": {
+    "cap": true,
+    "corner": "curvature",
+    "direction": [
+     0.0,
+     0.0,
+     1.0
+    ],
+    "distance": 8.0,
+    "draft": 0.0,
+    "profile": [
+     {
+      "line": {
+       "end": [
+        2.0,
+        -10.0,
+        6.0
+       ],
+       "start": [
+        -1.0,
+        -10.0,
+        6.0
+       ]
+      }
+     },
+     {
+      "line": {
+       "end": [
+        2.0,
+        10.0,
+        6.0
+       ],
+       "start": [
+        2.0,
+        -10.0,
+        6.0
+       ]
+      }
+     },
+     {
+      "line": {
+       "end": [
+        -1.0,
+        10.0,
+        6.0
+       ],
+       "start": [
+        2.0,
+        10.0,
+        6.0
+       ]
+      }
+     },
+     {
+      "line": {
+       "end": [
+        -1.0,
+        -10.0,
+        6.0
+       ],
+       "start": [
+        -1.0,
+        10.0,
+        6.0
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "inputs": [
+    "b73"
+   ],
+   "op": "copy",
+   "outputs": [
+    "b74"
+   ],
+   "params": {}
+  },
+  {
+   "inputs": [
+    "b74"
+   ],
+   "op": "copy",
+   "outputs": [
+    "b75"
+   ],
+   "params": {}
+  },
+  {
+   "inputs": [
+    "b72"
+   ],
+   "op": "copy",
+   "outputs": [
+    "b76"
+   ],
+   "params": {}
+  },
+  {
+   "inputs": [
+    "b76"
+   ],
+   "op": "copy",
+   "outputs": [
+    "b77"
+   ],
+   "params": {}
+  },
+  {
+   "inputs": [
+    "b75"
+   ],
+   "op": "tagged",
+   "outputs": [
+    "b78"
+   ],
+   "params": {
+    "operand": 0
+   }
+  },
+  {
+   "inputs": [
+    "b77"
+   ],
+   "op": "tagged",
+   "outputs": [
+    "b79"
+   ],
+   "params": {
+    "operand": 1
+   }
+  },
+  {
+   "inputs": [
+    "b78",
+    "b79"
+   ],
+   "op": "boolean",
+   "outputs": [
+    "b80"
+   ],
+   "params": {
+    "op": "subtract"
+   }
+  },
+  {
+   "inputs": [
+    "b81"
+   ],
+   "op": "copy",
+   "outputs": [
+    "b82"
+   ],
+   "params": {}
+  },
+  {
+   "inputs": [
+    "b82"
+   ],
+   "op": "copy",
+   "outputs": [
+    "b83"
+   ],
+   "params": {}
+  },
+  {
+   "inputs": [
+    "b83"
+   ],
+   "op": "tagged",
+   "outputs": [
+    "b84"
+   ],
+   "params": {
+    "operand": 0
+   }
+  },
+  {
+   "inputs": [
+    "b84"
+   ],
+   "op": "draft",
+   "outputs": [
+    "b85"
+   ],
+   "params": {
+    "angle": -0.010471975511965976,
+    "faces": {
+     "kind": "face",
+     "picked": [
+      {
+       "at": [],
+       "index": 9
+      }
+     ],
+     "points": [
+      [
+       0.6666666666666666,
+       6.666666666666666,
+       14.0
+      ]
+     ],
+     "tolerance": 0.053852648071345044
+    },
+    "neutral_normal": [
+     1.0,
+     0.0,
+     0.0
+    ],
+    "neutral_origin": [
+     2.0,
+     0.0,
+     0.0
+    ],
+    "pull": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "inputs": [
+    "b86"
+   ],
+   "op": "copy",
+   "outputs": [
+    "b87"
+   ],
+   "params": {}
+  },
+  {
+   "inputs": [
+    "b87"
+   ],
+   "op": "copy",
+   "outputs": [
+    "b88"
+   ],
+   "params": {}
+  },
+  {
+   "inputs": [
+    "b88"
+   ],
+   "op": "tagged",
+   "outputs": [
+    "b89"
+   ],
+   "params": {
+    "operand": 0
+   }
+  },
+  {
+   "inputs": [
+    "b89"
+   ],
+   "op": "blend_dropping",
+   "outputs": [
+    "b90"
+   ],
+   "params": {
+    "edges": {
+     "kind": "edge",
+     "picked": [
+      {
+       "at": [
+        [
+         0.0,
+         -10.0,
+         14.020944716644578
+        ],
+        [
+         0.0,
+         10.0,
+         14.020944716644578
+        ]
+       ],
+       "index": 11
+      },
+      {
+       "at": [
+        [
+         0.0,
+         10.0,
+         14.020944716644578
+        ],
+        [
+         0.0,
+         10.0,
+         5.999999999999972
+        ]
+       ],
+       "index": 10
+      }
+     ],
+     "points": [
+      [
+       0.0,
+       0.0,
+       14.020944716644578
+      ],
+      [
+       0.0,
+       10.0,
+       10.010472358322275
+      ]
+     ],
+     "tolerance": 2.693582403567252
+    },
+    "kind": "round",
+    "sizes": [
+     1.0,
+     1.0
+    ]
+   }
+  }
+ ],
+ "case": "map-edge-roof-draft-m0p6-roof-and-side",
+ "expected": {
+  "body_count": 1,
+  "method": "Block 40x30x20 (24000) with a recess 2 deep x 20 wide x 8 tall in its x=0 face (y -10..10, z 6..14; -320). Recess roof drafted -0.6 deg about the line x=2 (pull +X): it rises 2 tan a toward the mouth, removing a wedge 40 tan a = 0.418894. R1 on the roof's mouth edge (material angle 90+a: R^2(cot((90+a)/2) - (90-a)/2 rad) per mm x 20 = 4.188406) and on one side's mouth edge (90 deg: (1-pi/4) x (8 + 2 tan a) = 1.721309). V = 23680 - 0.418894 - 4.188406 - 1.721309 = 23673.671390; the corner where the two rounds meet is bounded by the R1 corner ball (4/3)pi/8 = 0.5236. (SolidCraft's call carried its default corner turn, `mitre`; dropped here: the ops blend takes none and mitres the two rounds at the corner itself; graded here against the closed-form volume above.)",
+  "source": "analytic",
+  "sources": [
+   "to file"
+  ],
+  "volume_mm3": 23673.67139,
+  "tolerance": {
+   "abs_mm": 0.5236
+  },
+  "what": "R1 on a drafted recess's roof and one side mouth edge, roof drafted -0.6 deg"
+ },
+ "expressible": false,
+ "operation_expressible": false,
+ "result": [],
+ "sources": null,
+ "ungraded": [],
+ "what": "R1 on a drafted recess's roof and one side mouth edge, roof drafted -0.6 deg",
+ "why_not": [
+  "the failure is SolidCraft's, not a kernel operation's: step 4 (solid.fillet): body `Body1`: the operation failed: SMLib fillet: SMLib's check refuses the result: 2 failed tests:\nSmBrep::Test #2 Bad Gap: Edge/Vertex gap across Edgeuse end larger than tol (offset=5.4830634e-05, tolerance=5.4830634e-05) [owner SmEdgeuse]\nSmBrep::Test #0 Bad Gap: Edge/Vertex gap across Edgeuse start larger than tol (offset=5.4830634e-05, tolerance=5.4830634e-05) [owner SmEdgeuse]\n"
+ ],
+ "records": "map-edge-roof-draft-m0p6-roof-and-side.bodies.json.gz"
+}

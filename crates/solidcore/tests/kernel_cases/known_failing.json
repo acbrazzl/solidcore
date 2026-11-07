@@ -99,5 +99,10 @@
     "case": "shell/cov-shell-again-open-at-an-inner-wall-of-a-shelled-box",
     "issue": "tangency-labs/solidcore#2954",
     "reason": "step 9 (solid.shell): SMLib shell: operation: SMLib failed (status 1001)"
+  },
+  {
+    "case": "fillets/map-edge-roof-draft-m0p6-roof-and-side",
+    "issue": "to file",
+    "reason": "SMLib's check refuses the result, Bad Gap at an edge use's ends with offset = tolerance = 5.4830634e-05: the mitre gap patch's rail extension is already under the corner tolerance and taken by the existing squeeze, and the gap it leaves equals the tolerance set from it (with or without fillet_gap_patch_mate)"
   }
 ]
