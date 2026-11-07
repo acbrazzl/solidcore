@@ -1,0 +1,113 @@
+{
+  "area": "booleans",
+  "bodies": {
+    "b2": {
+      "keeping_splines": false,
+      "trusted": true
+    }
+  },
+  "calls": [
+    {
+      "inputs": [
+        "b2"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b3"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b3"
+      ],
+      "op": "copy",
+      "outputs": [
+        "b4"
+      ],
+      "params": {}
+    },
+    {
+      "inputs": [
+        "b4"
+      ],
+      "op": "tagged",
+      "outputs": [
+        "b5"
+      ],
+      "params": {
+        "operand": 0
+      }
+    },
+    {
+      "inputs": [
+        "b5"
+      ],
+      "op": "draft",
+      "outputs": [
+        "b6"
+      ],
+      "params": {
+        "angle": -0.04363323129985824,
+        "faces": {
+          "kind": "face",
+          "picked": [
+            {
+              "at": [],
+              "index": 3
+            }
+          ],
+          "points": [
+            [
+              -0.7,
+              1.0,
+              10.0
+            ]
+          ],
+          "tolerance": 0.015525174696260025
+        },
+        "neutral_normal": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "neutral_origin": [
+          0.0,
+          0.0,
+          10.0
+        ],
+        "pull": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  ],
+  "case": "draft-ceiling-across-wall-onto-pad-control-no-pad",
+  "expected": {
+    "body_count": 1,
+    "method": "ts = tan 9 deg, td = tan 2.5 deg. Section area A = 6*14 - ts*9.8^2/2. The drafted ceiling z = 10 - x td meets the 9 deg ceiling z = 10 + (-4.2 - x) ts at xc = -4.2 ts/(ts - td) = -5.798416753. Inside (width 3) the draft removes 3 [td xc^2/2 - ts (-4.2 - xc)^2/2]; on the pad (width 2) 2 td 4.2^2/2. V(pad) = 3A + 2*4.2*6 - both; V(no pad) = 3A - the inside part.",
+    "source": "analytic",
+    "sources": [
+      "to file"
+    ],
+    "volume_mm3": 227.588202,
+    "what": "Profile in x-z extruded 3 along +y: ceiling z = 10 for x in [-4.2, 0], a second ceiling rising at 9 deg toward -x for x in [-14, -4.2], top z = 16; no pad: the same ceiling draft with no corner to split; always built."
+  },
+  "expressible": true,
+  "operation_expressible": true,
+  "records": "draft-ceiling-across-wall-onto-pad-control-no-pad.bodies.json.gz",
+  "result": [
+    {
+      "body": "Body1",
+      "made": "b6"
+    }
+  ],
+  "sources": [
+    "to file"
+  ],
+  "ungraded": [],
+  "what": "Profile in x-z extruded 3 along +y: ceiling z = 10 for x in [-4.2, 0], a second ceiling rising at 9 deg toward -x for x in [-14, -4.2], top z = 16; no pad: the same ceiling draft with no corner to split; always built.",
+  "why_not": []
+}
