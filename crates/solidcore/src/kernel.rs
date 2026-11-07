@@ -1562,6 +1562,13 @@ pub struct UpstreamFixes {
     /// against the untrimmed surface. Classifications outside editing are unchanged
     /// (WR-732, #2503; solidcore-native, no fork commit).
     pub brep_ray_classifies_current_trims: bool,
+    /// `SmBrep::LocalOperation` builds its offset executive at the B-rep's own tolerance, not
+    /// half of it. Upstream's half came back as the result's tolerance, so every local operation
+    /// (each draft) halved the B-rep's: four drafts take a box from 1e-5 to 6.25e-7, and a later
+    /// blend whose surfaces are approximated to a few 1e-4 then fails the check's
+    /// edge-tolerance-relative-to-B-rep test (solidcore-native, no fork commit). Raising the
+    /// tolerances back after the merge instead (SetTolerance) broke the body's STEP round trip.
+    pub local_operation_keeps_brep_tolerance: bool,
 }
 }
 

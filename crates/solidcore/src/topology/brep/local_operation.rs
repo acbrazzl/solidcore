@@ -150,7 +150,14 @@ pub fn local_operation(
     let mut executive = OffsetExecutive::new(
         OffsetOperation::LocalOperation,
         radius / 2.0,
-        tolerance / 2.0,
+        // (not upstream, opt-in `local_operation_keeps_brep_tolerance`) the executive at the
+        // B-rep's own tolerance: built at half of it, the result came back at half, so every
+        // local operation halved the B-rep's tolerance
+        if k.fixes.local_operation_keeps_brep_tolerance {
+            tolerance
+        } else {
+            tolerance / 2.0
+        },
     );
     // (the geometry creator's constructor tolerance, half a degree under WR-666's opt-in)
     executive.use_creator_tangency_tol(k);
@@ -427,5 +434,47 @@ mod tests {
             near(e.max_at(2), 80.0) && near(e.min_at(2), 0.0) && near(e.max_at(0), 20.0),
             "{e:?}"
         );
+    }
+
+    /// (`local_operation_keeps_brep_tolerance`) Each local operation's executive is built at
+    /// half the B-rep's tolerance: three moves of a box's top took its tolerance from the
+    /// box's to an eighth of it. With the flag the B-rep keeps the tolerance it came in with.
+    #[test]
+    fn repeated_local_operations_keep_the_brep_tolerance() {
+        for keep in [false, true] {
+            let mut k = Kernel::default();
+            k.fixes.local_operation_keeps_brep_tolerance = keep;
+            let mut b = create_box(&mut k, Point3::new(0.0, 0.0, 0.0), 2.0, 2.0, 2.0).unwrap();
+            let before = b.tolerance();
+            for (step, z) in [3.0, 4.0, 5.0].into_iter().enumerate() {
+                let top = bp1::faces(&b, None)
+                    .unwrap()
+                    .into_iter()
+                    .find(|&f| {
+                        let s = face_ops::surface(&b, f).unwrap().unwrap();
+                        let p = s
+                            .evaluate_point(&k, b.face(f).unwrap().uv_domain.evaluate(0.5, 0.5))
+                            .unwrap();
+                        (p.z - (2.0 + step as f64)).abs() < 1e-6
+                    })
+                    .unwrap();
+                let raised = Surface::from(Plane::from_normal(Vec3::new(0.0, 0.0, z), Vec3::Z));
+                with_notifications(&mut b, |b, notes| {
+                    local_operation(&mut k, b, &[top], vec![raised], notes)
+                })
+                .unwrap();
+            }
+            crate::topology::integrity::check(&b).unwrap();
+            if keep {
+                assert_eq!(b.tolerance(), before);
+            } else {
+                assert!(
+                    b.tolerance() <= before / 8.0 + f64::EPSILON,
+                    "{} vs {}",
+                    b.tolerance(),
+                    before
+                );
+            }
+        }
     }
 }
